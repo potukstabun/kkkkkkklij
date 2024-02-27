@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+<style type="text/css">
+<!--
+body {
+	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
+	background-color: #42413C;
+	margin: 0;
+	padding: 0;
+	color: #000;
+}
+/* ~~ Element/tag selectors ~~ */
+ul, ol, dl { /* Due to variations between browsers, it's best practices to zero padding and margin on lists. For consistency, you can either specify the amounts you want here, or on the list items (LI, DT, DD) they contain. Remember that what you do here will cascade to the .nav list unless you write a more specific selector. */
+	padding: 0;
+	margin: 0;
+}
+h1, h2, h3, h4, h5, h6, p {
+	margin-top: 0;	 /* removing the top margin gets around an issue where margins can escape from their containing block. The remaining bottom margin will hold it away from any elements that follow. */
+	padding-right: 15px;
+	padding-left: 15px; /* adding the padding to the sides of the elements within the blocks, instead of the block elements themselves, gets rid of any box model math. A nested block with side padding can also be used as an alternate method. */
+}
+a img { /* this selector removes the default blue border displayed in some browsers around an image when it is surrounded by a link */
+	border: none;
+}
+/* ~~ Styling for your site's links must remain in this order - including the group of selectors that create the hover effect. ~~ */
+a:link {
+	color: #42413C;
+	text-decoration: underline; /* unless you style your links to look extremely unique, it's best to provide underlines for quick visual identification */
+}
+a:visited {
+	color: #6E6C64;
+	text-decoration: underline;
+}
+a:hover, a:active, a:focus { /* this group of selectors will give a keyboard navigator the same hover experience as the person using a mouse. */
+	text-decoration: none;
+}
+/* ~~ This fixed width container surrounds all other blocks ~~ */
+.container {
+	width: 960px;
+	background-color: #FFFFFF;
+	margin: 0 auto; /* the auto value on the sides, coupled with the width, centers the layout */
+}
+/* ~~ The header is not given a width. It will extend the full width of your layout. ~~ */
+header {
+	background-color: #ADB96E;
+}
+/* ~~ These are the columns for the layout. ~~ 
+
+1) Padding is only placed on the top and/or bottom of the block elements. The elements within these blocks have padding on their sides. This saves you from any "box model math". Keep in mind, if you add any side padding or border to the block itself, it will be added to the width you define to create the *total* width. You may also choose to remove the padding on the element in the block element and place a second block element within it with no width and the padding necessary for your design.
+
+2) No margin has been given to the columns since they are all floated. If you must add margin, avoid placing it on the side you're floating toward (for example: a right margin on a block set to float right). Many times, padding can be used instead. For blocks where this rule must be broken, you should add a "display:inline" declaration to the block element's rule to tame a bug where some versions of Internet Explorer double the margin.
+
+3) Since classes can be used multiple times in a document (and an element can also have multiple classes applied), the columns have been assigned class names instead of IDs. For example, two sidebar blocks could be stacked if necessary. These can very easily be changed to IDs if that's your preference, as long as you'll only be using them once per document.
+
+4) If you prefer your nav on the left instead of the right, simply float these columns the opposite direction (all left instead of all right) and they'll render in reverse order. There's no need to move the blocks around in the HTML source.
+
+*/
+.sidebar1 {
+	float: left;
+	width: 180px;
+	background-color: #EADCAE;
+	padding-bottom: 10px;
+}
+.content {
+	padding: 10px 0;
+	width: 600px;
+	float: left;
+}
+aside {
+	float: left;
+	width: 180px;
+	background-color: #EADCAE;
+	padding: 10px 0;
+}
+
+/* ~~ This grouped selector gives the lists in the .content area space ~~ */
+.content ul, .content ol {
+	padding: 0 15px 15px 40px; /* this padding mirrors the right padding in the headings and paragraph rule above. Padding was placed on the bottom for space between other elements on the lists and on the left to create the indention. These may be adjusted as you wish. */
+}
+
+/* ~~ The navigation list styles (can be removed if you choose to use a premade flyout menu like Spry) ~~ */
+ul.nav {
+	list-style: none; /* this removes the list marker */
+	border-top: 1px solid #666; /* this creates the top border for the links - all others are placed using a bottom border on the LI */
+	margin-bottom: 15px; /* this creates the space between the navigation on the content below */
+}
+ul.nav li {
+	border-bottom: 1px solid #666; /* this creates the button separation */
+}
+ul.nav a, ul.nav a:visited { /* grouping these selectors makes sure that your links retain their button look even after being visited */
+	padding: 5px 5px 5px 15px;
+	display: block; /* this gives the link block properties causing it to fill the whole LI containing it. This causes the entire area to react to a mouse click. */
+	width: 160px;  /*this width makes the entire button clickable for IE6. If you don't need to support IE6, it can be removed. Calculate the proper width by subtracting the padding on this link from the width of your sidebar container. */
+	text-decoration: none;
+	background-color: #C6D580;
+}
+ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* this changes the background and text color for both mouse and keyboard navigators */
+	background-color: #ADB96E;
+	color: #FFF;
+}
+
+/* ~~ The footer ~~ */
+footer {
+	padding: 10px 0;
+	background-color: #CCC49F;
+	position: relative;/* this gives IE6 hasLayout to properly clear */
+	clear: both; /* this clear property forces the .container to understand where the columns end and contain them */
+}
+/* ~~ Miscellaneous float/clear classes ~~ */
+.fltrt {  /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+	float: right;
+	margin-left: 8px;
+}
+.fltlft { /* this class can be used to float an element left in your page. The floated element must precede the element it should be next to on the page. */
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat { /* this class can be placed on a <br /> or empty block element as the final element following the last floated block (within the .container) if the footer is removed or taken out of the .container */
+	clear:both;
+	height:0;
+	font-size: 1px;
+	line-height: 0px;
+}
+
+/*HTML 5 support - Sets new HTML 5 tags to display:block so browsers know how to render the tags properly. */
+header, section, footer, aside, article, figure {
+	display: block;
+}
+-->
+</style><!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]--></head>
+
+<body>
+
+<div class="container">
+  <header> 
+    <p>&nbsp;</p>
+  </header>
+  <div class="sidebar1">
+    <ul class="nav">
+      <li><a href="Index.html">home</a></li>
+      <li><a href="rule.html">rule</a></li>
+      <li><a href="รายละเอียด.html">other</a></li>
+      <li></li>
+    </ul>
+    <aside>
+      <p><!-- end .sidebar1 --></p>
+    </aside>
+  </div>
+  <article class="content">
+    <h1>ฟุตบอล</h1>
+    <section>
+     <h2>ประวัติ      </h2>
+     <p><strong><span lang="th" xml:lang="th">ประวัติฟุตบอลและกติกา ทั้ง ประวัติฟุตบอลไทย</span></strong><strong> <a href="http://hilight.kapook.com/view/49472" target="_blank" rel="noopener noreferrer"><span lang="th" xml:lang="th">ประวัติฟุตบอลโลก</span></a> <span lang="th" xml:lang="th">มีความเป็นมาอย่างไร อ่าน ประวัติฟุตบอลและกติกาการเล่นฟุตบอล กัน </span>  <br />
+     </strong><span lang="th" xml:lang="th">นับได้ว่า<strong> <span lang="th" xml:lang="th">ฟุตบอล</span></strong> <span lang="th" xml:lang="th">เป็นกีฬาที่มีคนสนใจอยู่ทั่วมุมโลก เห็นได้จากเวลาที่มีการแข่งขันรายการใหญ่อย่างฟุตบอลโลก หรือฟุตบอลยูโร ก็จะมีบริษัทต่าง ๆ ผลิตสินค้าเกี่ยวกับการแข่งขันออกมาขายตอบสนองความต้องการของแฟนบอลในตลาดเสมอ เช่น แก้วฟุตบอลโลก เสื้อแข่ง เป็นต้น จึงเป็นหลักฐานชี้ชัดว่า กีฬาชนิดนี้ ได้รับความนิยมไปทั่วโลกจริง ๆ โดยเฉพาะประเทศไทย ที่ประชาชนสนใจกีฬาฟุตบอลเป็นอันดับ </span>1 <span lang="th" xml:lang="th">อยู่แล้ว และวันนี้เรามี</span> <strong><span lang="th" xml:lang="th">ประวัติฟุตบอลและกติกา ทั้ง ประวัติฟุตบอลไทย ประวัติฟุตบอลโลก</span> </strong><span lang="th" xml:lang="th">เพื่อทำให้ผู้อ่านเกิดอรรถรสในการรับชมการแข่งขันยิ่งขึ้น</span></span><br />
+     <br />
+     </p>
+    </section>
+    <section>
+      <h2><strong> <span lang="th" xml:lang="th">ประวัติฟุตบอลโลก</span></strong></h2>
+      <p><span lang="th" xml:lang="th">จุดเริ่มต้นของกีฬาฟุตบอล ไม่มีหลักฐานชี้ชัดว่ากำเนิดมาจากที่ใดกันแน่ เพราะแต่ละชาติต่างออกมายืนยันว่าประเทศตนเองเป็นประเทศต้นกำเนิด เช่น อิตาลี กับ ฝรั่งเศส ก็มีการเล่น ซูเลอ หรือ จิโอโค เดล คาซิโอ ซึ่งมีกติกาคล้ายกับฟุตบอล เป็นต้น</span><span lang="th" xml:lang="th">อย่างไรก็ตาม จุดเริ่มต้นของฟุตบอลที่มีหลักฐานอย่างเป็นทางการ เริ่มตั้งแต่ ปี ค.ศ. </span>1863 (<span lang="th" xml:lang="th">พ.ศ. </span>2406) <span lang="th" xml:lang="th">ที่ประเทศอังกฤษ มีการจัดตั้งสมาคมฟุตบอลอังกฤษในปีนั้น และเริ่มมีการแข่งขันฟุตบอลลีกเป็นครั้งแรก ใน ค.ศ. </span>1888 (<span lang="th" xml:lang="th">พ.ศ. </span>2431) <span lang="th" xml:lang="th">และเริ่มมีการแข่งขันระหว่างประเทศครั้งแรกในปี ค.ศ. </span>1889 (<span lang="th" xml:lang="th">พ.ศ. </span>2432)<br />
+   <span lang="th" xml:lang="th">ในปี ค.ศ. </span>1904 (<span lang="th" xml:lang="th">พ.ศ. </span>2447) <span lang="th" xml:lang="th">เริ่มก่อตั้งสมาพันธ์ฟุตบอลนานาชาติ หรือ ฟีฟ่าขึ้น และมีการแข่งขันฟุตบอลโลกครั้งแรกใน ค.ศ. </span>1930 (<span lang="th" xml:lang="th">พ.ศ. </span>2473) <span lang="th" xml:lang="th">ที่ประเทศอุรุกวัย</span><br />
+ <strong><span lang="th" xml:lang="th">กีฬาฟุตบอลในประเทศไทย</span></strong><br />
+<span lang="th" xml:lang="th">สำหรับกีฬาฟุตบอลในประเทศไทย เริ่มเข้ามาในยุคพระบาทสมเด็จพระจุลจอมเกล้าเจ้าอยู่หัว รัชกาลที่ </span>5 <span lang="th" xml:lang="th">โดยมีเจ้าพระยาธรรมศักดิ์มนตรีนำเข้ามา จากการไปเรียนที่ต่างประเทศ ซึ่งใน พ.ศ. </span>2443 <span lang="th" xml:lang="th">มีการแข่งขันฟุตบอลเป็นครั้งแรกระหว่างทีมชุดบางกอก กับชุดกรมศึกษาธิการ ที่สนามหลวง ปรากฎว่าเสมอกัน </span>2-2<br />
+ <span lang="th" xml:lang="th">ต่อมาในยุคสมัยพระบาทสมเด็จพระมงกุฎเกล้าเจ้าอยู่หัว รัชกาลที่ </span>6 <span lang="th" xml:lang="th">พระองค์ทรงสนใจกีฬาฟุตบอลอย่างมาก มีทีมฟุตบอลส่วนพระองค์ คือ ทีมเสือป่า และมีการเผยแพร่ข่าวสาร การเล่น เกี่ยวกับฟุตบอลอย่างแพร่หลาย นอกจากนี้ สมาคมฟุตบอลแห่งสยาม ถูกก่อตั้งขึ้นเป็นครั้งแรกในปี พ.ศ. </span>2459 <span lang="th" xml:lang="th">อีกด้วย</span></p>
+    </section>
+    <section>
+      <h2><strong><span lang="th" xml:lang="th">สนามแข่งขันฟุตบอล</span></strong><br />
+      <span lang="th" xml:lang="th">สนามฟุตบอล ไม่ได้มีการกำหนดขนาดไว้แบบตรง ๆ เนื่องจากในพื้นที่แต่ละสนาม อาจมีพื้นที่ไม่เท่ากัน แต่ได้มีการกำหนดด้านยาว กว้างประมาณ </span>100-130 <span lang="th" xml:lang="th">หลา ส่วนด้านกว้าง กว้างประมาณ </span>50-100 <span lang="th" xml:lang="th">หลา โดยแบ่งเขตแดนออกเป็น </span>2 <span lang="th" xml:lang="th">ฝั่ง อย่างละเท่า ๆ กัน มี ประตูขนาดกว้าง </span>8 <span lang="th" xml:lang="th">หลา สูง </span>8 <span lang="th" xml:lang="th">ฟุต มีเขตโทษ ซึ่งนับห่างจากโกล ห่าง </span>18 <span lang="th" xml:lang="th">หลา ส่วนพื้นสนามฟุตบอล ใช้หญ้าแท้หรือหญ้าเทียมก็ได้</span></h2>
+</section>
+  <!-- end .content --></article>
+  <aside>
+    <h4>&nbsp;</h4>
+  </aside>
+  <footer>
+    <p><a href="fuck idiot danmshit dum.html">me</a></p>
+  </footer>
+  <!-- end .container --></div>
+</body>
+</html>
